@@ -11,40 +11,36 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# Title of the page
+st.title("YouTube and Quizizz Embed Page")
 
-import streamlit as st
-from streamlit.logger import get_logger
+# YouTube Embed
+st.header("Embed a YouTube Video")
+video_id = st.text_input("Enter the YouTube video ID (e.g., dQw4w9WgXcQ):")
+if video_id:
+    video_url = f"https://www.youtube.com/embed/{video_id}"
+    st.markdown(f'<iframe width="560" height="315" src="{video_url}" frameborder="0" allowfullscreen></iframe>', unsafe_allow_html=True)
 
-LOGGER = get_logger(__name__)
+# Quizizz Embed
+st.header("Embed a Quiz from Quizizz")
+quiz_id = st.text_input("Enter the Quizizz quiz ID:")
+if quiz_id:
+    quiz_url = f"https://quizizz.com/join/quiz/{quiz_id}/start"
+    st.markdown(f'<iframe src="{quiz_url}" width="100%" height="600px" frameborder="0"></iframe>', unsafe_allow_html=True)
+
+st.sidebar.text("Made with Streamlit")
+Here’s how this code works:
+
+The st.text_input function is used to get the YouTube video ID and Quizizz quiz ID from the user.
+Once these IDs are provided, the respective URLs are constructed.
+The st.markdown function with the unsafe_allow_html=True parameter is used to embed the constructed URLs as iframes.
+Please note: The use of unsafe_allow_html=True can be a security risk if you allow untrusted content to be embedded or displayed. Make sure you trust the content you're embedding.
 
 
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
 
-    st.write("# Welcome to Streamlit! 👋")
 
-    st.sidebar.success("Select a demo above.")
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+
 
 
 if __name__ == "__main__":
